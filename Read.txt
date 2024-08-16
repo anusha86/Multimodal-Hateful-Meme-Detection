@@ -1,0 +1,3 @@
+--> Split dataset has train, test and validation data
+
+--> Labelled Image has memes belonging to each of the above dataset
