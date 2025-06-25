@@ -1,67 +1,43 @@
-# The Hateful Memes Challenge README
+Multimodal Hateful Meme Detection using Knowledge Distillation and Hierarchical Vision Transformer Framework
+This project presents a multimodal deep learning framework that detects hateful content in memes by fusing visual and textual features. It introduces an efficient pipeline that leverages Knowledge Distillation for textual feature compression and a Hierarchical Vision Transformer (HVT) for visual understanding, enabling accurate and scalable hate speech detection in complex multimodal inputs.
+
+Textual Branch – Knowledge Distillation
+Uses a distilled BERT model to extract semantic-rich text embeddings efficiently.
+
+Knowledge distillation compresses a large teacher model into a smaller, faster student model without significant performance loss.
+
+Efficient for real-time or edge deployment (e.g., mobile devices).
+
+🖼️ Visual Branch – Hierarchical Vision Transformer (HVT)
+Employs a Hierarchical Vision Transformer for multi-scale visual understanding.
+
+Captures both local and global dependencies using a window-based attention mechanism.
+
+Reduces computational complexity through sliding window attention and hierarchical token merging.
+
+🔄 Cross-Modal Fusion
+Extracted text and image features are concatenated to form a fused representation F.
+
+F is passed through a softmax classifier for final label prediction.
+
+📚 Datasets Used
+MMHS150K
+Twitter-based multimodal hate speech dataset with 150K samples.
+
+Hateful Memes Challenge (HMC)
+Curated by Facebook AI to emphasize the need for multimodal reasoning.
+
+MultiOFF
+A small-scale dataset of offensive memes with multimodal annotations.
+
+Training Overview
+Uses standard supervised learning with cross-entropy loss.
+
+Employs adaptive learning rate decay, early stopping, and batch-based training.
+
+Visual features processed through HVT layers and pooled before fusion.
+
+Textual features extracted via a distilled transformer with tokenization and embedding layers.
 
 
-The Hateful Memes Challenge is a dataset and benchmark created by Facebook AI to drive and measure progress on multimodal reasoning and understanding. The task focuses on detecting hate speech in multimodal memes.
 
-
-Please see the paper for further details:
-
-
-[The Hateful Memes Challenge: Detecting Hate Speech in Multimodal Memes
-D. Kiela, H. Firooz, A. Mohan, V. Goswami, A. Singh, P. Ringshia, D. Testuggine](
-https://arxiv.org/abs/2005.04790)
-
-
-# Dataset details
-The files for this folder are arranged as follows:
-
-
-img/                -        the PNG images
-train.jsonl        -        the training set
-dev.jsonl        -        the development set
-test.jsonl        -        the “seen” test set
-
-
-An additional “unseen” test set will be released at a later date under the NeurIPS 2020 competition. Please see https://ai.facebook.com/hatefulmemes. The competition rules are provided on the competition website.
-
-
-The .jsonl format contains one JSON-encoded example per line, each of which has the following fields:
-
-
-‘text’        - the text occurring in the meme
-‘img’        - the path to the image in the img/ directory
-‘label’        - the label for the meme (0=not-hateful, 1=hateful), provided for train and dev
-
-
-The metric to use is AUROC. You may also report accuracy in addition, since this is more interpretable. To compute these metrics, we recommend the roc_auc_score and accuracy_score methods in sklearn.metrics, with default settings.
-
-# Note on Annotator Accuracy
-As is to be expected with a dataset of this size and nature, some of the examples in the training set have been misclassified. We are not claiming that our dataset labels are completely accurate, or even that all annotators would agree on a particular label. Misclassifications, although possible, should be very rare in the dev and seen test set, however, and we will take extra care with the unseen test set.
-
-As a reminder, the annotations collected for this dataset were not collected using Facebook annotators and we did not employ Facebook’s hate speech policy. As such, the dataset labels do not in any way reflect Facebook’s official stance on this matter.
-
-# License
-The dataset is licensed under the terms in the `LICENSE.txt` file.
-
-
-# Image Attribution
-If you wish to display example memes in your paper, please provide the following attribution:
-
-
-*Image is a compilation of assets, including ©Getty Image.*
-
-
-# Citations
-If you wish to cite this work, please use the following BiBTeX:
-
-```
-@inproceedings{Kiela2020TheHM,
-  title={The Hateful Memes Challenge: Detecting Hate Speech in Multimodal Memes},
-  author={Douwe Kiela and Hamed Firooz and Aravind Mohan and Vedanuj Goswami and Amanpreet Singh and Pratik Ringshia and Davide Testuggine},
-  year={2020}
-}
-```
-
-
-# Contact
-If you have any questions or comments on the dataset, please contact hatefulmemeschallenge@fb.com.
