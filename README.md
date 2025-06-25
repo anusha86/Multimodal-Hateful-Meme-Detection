@@ -40,23 +40,35 @@ Visual features processed through HVT layers and pooled before fusion.
 Textual features extracted via a distilled transformer with tokenization and embedding layers.
 
 **Experimental Setup**
-All experiments for training and evaluating the multimodal hateful meme detection models were conducted on a high-performance local workstation with the following specifications:
+xperimental Setup
+The experiments were conducted across two different hardware configurations to ensure robustness, performance benchmarking, and scalability of the proposed model.
+
+🔧 Primary Setup: NVIDIA TITAN RTX GPUs
+For large-scale training (e.g., MMHS150K and Hateful Memes Challenge), experiments were conducted using a high-performance deep learning workstation equipped with:
+
+Component	Details
+GPU	2 × NVIDIA TITAN RTX (24 GB each, operated in parallel)
+Total VRAM	48 GB
+Framework	PyTorch with CUDA & cuDNN
+Usage	Parallel GPU training for multimodal feature extraction and fusion
+
+This configuration was used for accelerated training of transformer-based models with large batch sizes and high-resolution image inputs.
+
+🖥️ Secondary Setup: AMD ROCm-enabled Local System
+For development, testing, and evaluation, experiments were also performed on an AMD-based system with the following specifications:
 
 Component	Details
 CPU	AMD Ryzen 7 5700X3D
-GPU	AMD Radeon RX 6800 XT (ROCm-enabled, Ubuntu OS)
+GPU	AMD Radeon RX 6800 XT (ROCm-enabled, Ubuntu)
 RAM	32 GB DDR4 @ 3200 MHz
-Storage (ROM)	8 TB total (4 TB HDD + 4 TB SSD [3 TB NVMe + 1 TB SATA])
+Storage (ROM)	8 TB (4 TB HDD + 4 TB SSD [3 TB NVMe + 1 TB SATA])
 Motherboard	Gigabyte B550M DS3H AC
-PC Case	NZXT H510 Flow
+Case	NZXT H510 Flow
 Cooling	Cooler Master Hyper 212 + 2 ARGB/eSports fans
 Power Supply	Reactor Core 750W PSU
 
-The system was optimized for deep learning workloads and configured to run PyTorch with ROCm support for full GPU acceleration on AMD hardware.
+This setup was primarily used for debugging, model inference, and validation tasks under ROCm-supported environments with PyTorch.
 
-This setup enabled smooth processing of large-scale datasets (e.g., MMHS150K) and transformer-based model training for both textual and visual branches.
-
-
-
-
+Both configurations were tested with the same software stack and configurations to ensure consistency in results and cross-hardware reproducibility.
+All experiments for training and evaluating the multimodal hateful meme detection models were conducted on a high-performance local workstation with the following specifications:
 
