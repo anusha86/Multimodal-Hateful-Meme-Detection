@@ -20,7 +20,7 @@ Extracted text and image features are concatenated to form a fused representatio
 
 F is passed through a softmax classifier for final label prediction.
 
-📚 Datasets Used
+📚** Datasets Used**
 MMHS150K
 Twitter-based multimodal hate speech dataset with 150K samples.
 
@@ -38,6 +38,25 @@ Employs adaptive learning rate decay, early stopping, and batch-based training.
 Visual features processed through HVT layers and pooled before fusion.
 
 Textual features extracted via a distilled transformer with tokenization and embedding layers.
+
+**Experimental Setup**
+All experiments for training and evaluating the multimodal hateful meme detection models were conducted on a high-performance local workstation with the following specifications:
+
+Component	Details
+CPU	AMD Ryzen 7 5700X3D
+GPU	AMD Radeon RX 6800 XT (ROCm-enabled, Ubuntu OS)
+RAM	32 GB DDR4 @ 3200 MHz
+Storage (ROM)	8 TB total (4 TB HDD + 4 TB SSD [3 TB NVMe + 1 TB SATA])
+Motherboard	Gigabyte B550M DS3H AC
+PC Case	NZXT H510 Flow
+Cooling	Cooler Master Hyper 212 + 2 ARGB/eSports fans
+Power Supply	Reactor Core 750W PSU
+
+The system was optimized for deep learning workloads and configured to run PyTorch with ROCm support for full GPU acceleration on AMD hardware.
+
+This setup enabled smooth processing of large-scale datasets (e.g., MMHS150K) and transformer-based model training for both textual and visual branches.
+
+
 
 
 
