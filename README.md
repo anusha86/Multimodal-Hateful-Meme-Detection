@@ -40,7 +40,6 @@ Visual features processed through HVT layers and pooled before fusion.
 Textual features extracted via a distilled transformer with tokenization and embedding layers.
 
 **Experimental Setup**
-xperimental Setup
 The experiments were conducted across two different hardware configurations to ensure robustness, performance benchmarking, and scalability of the proposed model.
 
 🔧 Primary Setup: NVIDIA TITAN RTX GPUs
@@ -54,21 +53,31 @@ Usage	Parallel GPU training for multimodal feature extraction and fusion
 
 This configuration was used for accelerated training of transformer-based models with large batch sizes and high-resolution image inputs.
 
-🖥️ Secondary Setup: AMD ROCm-enabled Local System
-For development, testing, and evaluation, experiments were also performed on an AMD-based system with the following specifications:
+**Import Libraries**
+ "import os\n",
+    "import pandas as pd\n",
+    "\n",
+    "import torch\n",
+    "from torch.nn.utils.rnn import pad_sequence\n",
+    "from torch.utils.data import DataLoader, Dataset\n",
+    "from PIL import Image\n",
+    "import torch.nn as nn\n",
+    "import torch.optim as optim\n",
+    "import torchvision.models as models\n",
+    "from datetime import datetime\n",
+    "import torch.optim.lr_scheduler as scheduler\n",
+    "import json\n",
+    "import torchvision.transforms as transforms\n",
+    "import random\n",
+    "\n",
+    "from transformers import DistilBertForSequenceClassification\n",
+    "from transformers import DistilBertTokenizerFast\n",
+    "from torchvision import transforms\n",
+    "from transformers import get_cosine_schedule_with_warmup\n",
+    "from sklearn.metrics import (accuracy_score, f1_score, matthews_corrcoef,
+                             confusion_matrix, precision_score, recall_score)"
+    "import timm\n",
+    "from timm.loss import SoftTargetCrossEntropy\n",
+    "from timm.data import Mixup"
 
-Component	Details
-CPU	AMD Ryzen 7 5700X3D
-GPU	AMD Radeon RX 6800 XT (ROCm-enabled, Ubuntu)
-RAM	32 GB DDR4 @ 3200 MHz
-Storage (ROM)	8 TB (4 TB HDD + 4 TB SSD [3 TB NVMe + 1 TB SATA])
-Motherboard	Gigabyte B550M DS3H AC
-Case	NZXT H510 Flow
-Cooling	Cooler Master Hyper 212 + 2 ARGB/eSports fans
-Power Supply	Reactor Core 750W PSU
-
-This setup was primarily used for debugging, model inference, and validation tasks under ROCm-supported environments with PyTorch.
-
-Both configurations were tested with the same software stack and configurations to ensure consistency in results and cross-hardware reproducibility.
-All experiments for training and evaluating the multimodal hateful meme detection models were conducted on a high-performance local workstation with the following specifications:
 
